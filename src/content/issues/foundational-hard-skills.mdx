@@ -21,12 +21,12 @@ export const quick_install = await getEntry("articles", "html-intro");
   <MarkdownSnippet
     markdown={quick_install}
     components={{    
-      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/pages/${quick_install.slug}`}  {...props}/></h2>,
       // a: (props) => <p {...props} />,
       More: props => <></>,
       FancyParagraph
     }}
-    href={`/articles/${quick_install.slug}`}
+    href={`/pages/${quick_install.slug}`}
     class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
     cta="Read more about getting started"
     title={quick_install.data.title}
