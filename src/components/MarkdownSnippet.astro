@@ -1,0 +1,13 @@
+---
+const { markdown, class: className, href, components, cta } = Astro.props;
+markdown.body = markdown.body.split("").slice(0, 10).join("");
+
+const { Content } = await markdown.render();
+---
+
+<div class={className}>
+  <div transition:name={markdown.data.title}>
+    <Content components={components} />
+  </div>
+  <a href={href} class="btn btn-block btn-outline btn-primary">{cta}</a>
+</div>

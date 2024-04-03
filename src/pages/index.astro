@@ -1,0 +1,16 @@
+---
+import matter from "gray-matter";
+import Layout from "../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+
+const entry = await getEntry("issues", "teach-yourself");
+
+const issueSlug = `/issues/${entry.slug}`;
+const { Content, headings } = await entry.render();
+---
+
+<Layout issueSlug={issueSlug} title={entry.data.title} frontmatter={entry.data}>
+  <div transition:name={entry.data.title}>
+    <Content />
+  </div>
+</Layout>

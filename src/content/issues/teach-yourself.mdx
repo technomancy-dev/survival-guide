@@ -1,0 +1,108 @@
+---
+title: The knowledge you need to begin your coding journey. 
+description: An Astro theme for publishing content for humans to read.
+issue_number: 1
+---
+
+import { getEntry } from "astro:content";
+export const quick_install = await getEntry("articles", "teach-yourself-ethos");
+export const out_of_hell = await getEntry("articles", "get-yourself-out-of-hell");
+export const choosing_a_path = await getEntry("articles", "choosing-a-path");
+export const do_not_kid = await getEntry("articles", "do-not-kid-yourself");
+import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+import FancyParagraph from "../../components/FancyParagraph.astro";
+
+<div
+  class="grid grid-cols-12 lg:gap-x-4 xl:gap-x-16 md:px-10 px-8 text-justify"
+>
+  <div class="col-span-12 xl:col-span-8 prose prose-xl text-left">
+    <h1 class="text-3xl lg:text-8xl">
+      {frontmatter.title}
+    </h1>
+  </div>
+
+  <div class="mt-6 col-span-4 hidden xl:block prose prose-sm row-span-2">
+    ## Learning to code is hard, teaching yourself is harder. This guide will give it's best attempt to help you survive the journey.
+
+    The survival guide is largely inspired by an album by Aesop Rock. [The Spirit World Field Guide](https://www.youtube.com/watch?v=wP8RgWJ76xE\&list=PL_AA8JeDxiPZP1ri2vu7Wwvvf3iC0qHsO)
+    has a few quotes all from the first song that I would like you to keep in mind as you read this (and anything else I write).
+
+    > My days here have been as rewarding as they are troublesome, and often dangerous.
+
+    > I have been assembling my notes for some time now.
+    > My intent is to create a guide for anyone whose path.
+    > May lead them to this unwavering otherness (This unwavering otherness).
+
+    > There are days I fear my work will only serve to create more confusion about what I've found.
+    > But I felt it nеcessary to stay the course in hopеs that these insights may be illuminating for some.
+
+    > There will be times when you will be tested in ways this guide can neither prepare you for, nor help you from.
+
+    > Contained within are anecdotes, recipes, survival tips, warnings, maps, drawings, and more
+  </div>
+
+  <MarkdownSnippet
+    markdown={quick_install}
+    components={{    
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
+      a: (props) => <p {...props} />,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${quick_install.slug}`}
+    class="xl:col-span-4 row-span-2 prose-sm col-span-12"
+    cta="Programming is not rocket science, it’s a martial art."
+    title={quick_install.data.title}
+  />
+
+  <div class="col-span-4 prose mt-16 hidden xl:block">
+  
+    > Users should skip to whatever section most directly applies to their impending scenario.
+    > As no two Spirit World experiences are the same.
+    > Accordingly, certain passages may detail specific circumstances that you will not encounter
+    > It is still recommended you cover these sections as to increase your general understanding of what can be expected
+
+  </div>
+
+  <MarkdownSnippet
+    markdown={out_of_hell}
+    components={{    
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${out_of_hell.slug}`}  {...props}/></h2>,
+      a: (props) => <p {...props} />,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${out_of_hell.slug}`}
+    class="lg:col-span-4 row-span-2 prose-sm col-span-12"
+    cta="Tips and tricks to fool the devil."
+    title={out_of_hell.data.title}
+  />
+
+  <MarkdownSnippet
+    markdown={choosing_a_path}
+    components={{    
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${choosing_a_path.slug}`}  {...props}/></h2>,
+      a: (props) => <p {...props} />,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${choosing_a_path.slug}`}
+    class="lg:col-span-4 prose-sm row-span-2 col-span-12"
+    cta="A fork in the road appears, which path leads to salvation?"
+    title={choosing_a_path.data.title}
+  />
+
+  <MarkdownSnippet
+    markdown={do_not_kid}
+    components={{    
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${do_not_kid.slug}`}  {...props}/></h2>,
+      a: (props) => <p {...props} />,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${do_not_kid.slug}`}
+    class="lg:col-span-4 prose-sm col-span-12"
+    cta="Click here to learn to code in 30 days!"
+    title={do_not_kid.data.title}
+  />
+</div>

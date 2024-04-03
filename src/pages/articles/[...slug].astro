@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import FancyParagraph from "../../components/FancyParagraph.astro";
+import More from "../../components/More.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("articles");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content, headings } = await entry.render();
+const issue = await getCollection("issues", ({ data }) => {
+  return data.issue_number === entry.data.issue_number;
+});
+---
+
+<Layout
+  issueSlug={`/issues/${issue[0].slug}`}
+  title={entry.data.title}
+  frontmatter={entry.data}
+>
+  <div class="grid grid-cols-12 relative">
+    <div
+      class="text-primary col-span-12 lg:order-2 sticky h-fit top-10 lg:col-span-4"
+    >
+      <TableOfContents headings={headings} />
+    </div>
+    <div
+      transition:name={entry.data.title}
+      class="px-2 col-span-8 prose prose-xl md:px-10"
+    >
+      <Content components={{ More: More, FancyParagraph }} />
+    </div>
+  </div>
+</Layout>

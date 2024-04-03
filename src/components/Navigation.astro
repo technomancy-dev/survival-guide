@@ -1,0 +1,61 @@
+---
+const { issue, issue_slug } = Astro.props;
+import Mushroom from "./Mushroom.astro";
+import Bug from "./Bug.astro";
+import Bat from "./Bat.astro";
+import romanize from "../utils/romanize";
+
+const options = { weekday: "long" };
+const optionsMonth = { month: "long" };
+
+const today = new Date();
+const dayNum = today.getDay();
+
+const monthNum = today.getMonth();
+const date = today.getDate();
+const year = today.getFullYear();
+// @ts-ignore
+const day = new Intl.DateTimeFormat("en-US", options).format(today);
+// @ts-ignore
+const month = new Intl.DateTimeFormat("en-US", optionsMonth).format(today);
+---
+
+<nav class="p-2 md:px-10 w-full">
+  <div class="flex justify-between items-center">
+    <a class="flex-1 w-full" href="/">
+      <span class="text-2xl md:text-7xl block text-md"
+        >Teach Yourself Survival Guide</span
+      >
+    </a>
+    <a
+      class="flex-1 lg:text-md text-xs text-right"
+      href="https://www.technomancy.dev/"
+    >
+      A handbook from
+      <span class="lg:text-3xl text-sm font-young-serif block">
+        technomancy.dev
+      </span>
+    </a>
+  </div>
+  <div class="relative flex items-center justify-between w-full mb-4 md:mb-16">
+    <div class="absolute inset-0 mt-1 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-base-content"></div>
+    </div>
+    <div class="relative flex justify-start">
+      <span
+        class="bg-base-100 flex items-center pr-3 text-base font-semibold leading-6"
+      >
+        <Bug /><Mushroom /><Bat /> A Brutally honest guide on teaching yourself how
+        to code.
+      </span>
+    </div>
+    <div class="relative flex">
+      <a
+        href="/chapters/no/1"
+        class="bg-base-100 text-primary pl-3 text-base font-semibold leading-6"
+      >
+        Chapters
+      </a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,50 @@
+---
+title: Foundational hard skills.
+description: An Astro theme for publishing content for humans to read.
+issue_number: 2
+---
+
+import { getEntry } from "astro:content";
+import MarkdownSnippet from "../../components/MarkdownSnippet.astro";
+import FancyParagraph from "../../components/FancyParagraph.astro";
+
+
+export const quick_install = await getEntry("articles", "html-intro");
+
+<div
+  class="grid grid-cols-12 gap-y-8 lg:gap-4 xl:gap-16 md:px-10 px-2 text-justify"
+>
+  <div class="col-span-10 text-3xl lg:text-9xl text-left">
+    # {frontmatter.title}
+  </div>
+
+  <MarkdownSnippet
+    markdown={quick_install}
+    components={{    
+      h1: (props) => <h2 class="text-primary text-5xl text-left" ><a href={`/articles/${quick_install.slug}`}  {...props}/></h2>,
+      // a: (props) => <p {...props} />,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${quick_install.slug}`}
+    class="lg:col-span-6 xl:col-span-8 prose-xl col-span-12"
+    cta="Read more about getting started"
+    title={quick_install.data.title}
+  />
+
+  {/* <MarkdownSnippet
+    markdown={technonomicon}
+    components={{
+      h1: (props) => <h2 class="text-primary text-4xl text-left" ><a href={`/articles/${technonomicon.slug}`}  {...props}/></h2>,
+      a: props => <div class="border-l text-sm pl-2 border-secondary"><a target="_blank" class="text-secondary leading-3" {...props} /></div>,
+      More: props => <></>,
+      FancyParagraph
+    }}
+    href={`/articles/${technonomicon.slug}`}
+    class="lg:col-span-8 xl:col-span-4 row-span-2 prose-xl col-span-12"
+    cta="Read more about why I made this"
+    title={technonomicon.data.title}
+  /> */}
+
+
+</div>
