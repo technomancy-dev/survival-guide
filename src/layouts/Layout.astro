@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Navigation from "../components/Navigation.astro";
+import VtBotDebug from "astro-vtbot/components/VtBotDebug.astro";
 interface Props {
   title: string;
   frontmatter: any;
@@ -20,6 +21,7 @@ const { title, frontmatter, issueSlug } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
+    <VtBotDebug production />
     <ViewTransitions />
   </head>
   <body class="font-serif pb-16">
